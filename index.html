@@ -90,6 +90,8 @@
 
     </div>
 </div>
+<audio src="./img/wodejiangjun.m4a" autoplay="autoplay"  loop  id="mp">抱歉你的浏览器版本out了，去升级吧</audio>
+
 <script>
     $(document).ready(function(){
         //卷轴展开效果
@@ -114,7 +116,7 @@
     heartL = [];
     for (let i=0;i<10;i++){
         let oImg = document.createElement('img');
-        oImg.src = imgL[i%ingL.length];
+        oImg.src = imgL[i%imgL.length];
         oImg.calssName = 'fImg';
         oImg.style.left = Math.random() * cW + "px";
         oImg.style.top = Math.random() * cH + "px";
