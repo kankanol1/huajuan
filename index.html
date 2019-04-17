@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>卷轴展开demo</title>
+    <link rel="stylesheet" href="./css/index.css">
+    <script src="./js/jquery-1.12.4.js"></script>
+</head>
+<body>
+<!--content-->
+<div class="content">
+    <div class="l-pic-index"></div>
+    <div class="r-pic-index"></div>
+    <div class="l-bg-index"></div>
+    <div class="r-bg-index"></div>
+    <div class="main-index">
+        <h1 class="title">
+            <img src="./img/i.svg" class="no left" alt="">
+            <img src="./img/xin.svg" class="change" alt="">
+            <img src="./img/u.svg" class="no right" alt="">
+        </h1>
+        <div class="con">
+            <div class="left">
+                <p class="intro-text">
+                    我希望有一天能够为你写一首诗<br>
+                    诗里面有阳光，海水和整片的甘蔗林<br>
+                    阳光明媚，海水平静<br>
+                    当风吹过的时候<br>
+                    整个林子都在我心里晃动<br>
+                    很多年再很多年以后<br>
+                    我们的影子会停靠在这首诗里<br>
+                    沿着右下角的岁月一页页排列<br>
+                    每一页都有我们经过的长廊<br>
+                    曲折而无悔<br>
+                    我听说风吹过海面扬起的浪花<br>
+                    会有晚霞的颜色<br>
+                    我听说风过后的海边<br>
+
+                   <!-- 会积满白色的沙<br>
+                    我知道每个下午都有太阳<br>
+                    我知道下一次风起会带走白沙<br>
+                    可是有的故事不会重复<br>
+                    但是在欢乐的沙滩上<br>
+                    我偷偷的刻上你的名字<br>
+                    当我们渐渐的走远<br>
+                    浪花把它带到了海底<br>
+                    所有的鱼儿都会传抄我给你写的诗行<br>
+                    等待下一次风起的时候<br>
+                    我想牵着你的手<br>
+                    踩着风儿的尾巴<br>
+                    一起走遍这角角落落的沙滩-->
+                </p>
+            </div>
+            <div class="right">
+                <p class="intro-text">
+                    <!--我希望有一天能够为你写一首诗<br>
+                    诗里面有阳光，海水和整片的甘蔗林<br>
+                    阳光明媚，海水平静<br>
+                    当风吹过的时候<br>
+                    整个林子都在我心里晃动<br>
+                    很多年再很多年以后<br>
+                    我们的影子会停靠在这首诗里<br>
+                    沿着右下角的岁月一页页排列<br>
+                    每一页都有我们经过的长廊<br>
+                    曲折而无悔<br>
+                    我听说风吹过海面扬起的浪花<br>
+                    会有晚霞的颜色<br>
+                    我听说风过后的海边<br>-->
+                    会积满白色的沙<br>
+                    我知道每个下午都有太阳<br>
+                    我知道下一次风起会带走白沙<br>
+                    可是有的故事不会重复<br>
+                    但是在欢乐的沙滩上<br>
+                    我偷偷的刻上你的名字<br>
+                    当我们渐渐的走远<br>
+                    浪花把它带到了海底<br>
+                    所有的鱼儿都会传抄我给你写的诗行<br>
+                    等待下一次风起的时候<br>
+                    我想牵着你的手<br>
+                    踩着风儿的尾巴<br>
+                    一起走遍这角角落落的沙滩
+                </p>
+            </div>
+
+        </div>
+        <img src="./img/you.svg" class="you" alt="">
+
+    </div>
+</div>
+<script>
+    $(document).ready(function(){
+        //卷轴展开效果
+        $(".l-pic-index").animate({'left':'8px'},1500);
+        $(".r-pic-index").animate({'right':'9px'},1500);
+        $(".l-bg-index").animate({'width':'432px','left':'73px'},1500);
+        $(".r-bg-index").animate({'width':'432px','left':'504px'},1500,function(){
+            $(".main-index").fadeIn(1500);
+        });
+    });
+
+    let cW = window.innerWidth-50;
+    let cH = window.innerHeight-50;
+    // console.log(cW,cH);
+    let speed = 2;
+    let imgL = [
+        './img/i.svg',
+        './img/xin.svg',
+        './img/u.svg',
+        './img/you.svg',
+    ];
+    heartL = [];
+    for (let i=0;i<10;i++){
+        let oImg = document.createElement('img');
+        oImg.src = imgL[i%ingL.length];
+        oImg.calssName = 'fImg';
+        oImg.style.left = Math.random() * cW + "px";
+        oImg.style.top = Math.random() * cH + "px";
+        oImg.style.position = 'fixed';
+        oImg.style.width = 50+ 'px';
+        oImg.style.width = 50 + 'px';
+        oImg.style.zIndex = 10;
+        oImg.setAttribute('dataX',(0.5-Math.random()) * speed );
+        oImg.setAttribute('dataY',(0.5-Math.random()) * speed );
+
+        heartL.push(oImg);
+        document.querySelector('body').appendChild(oImg);
+    }
+
+    setInterval(function(){
+        for(let i=0;i<heartL.length;i++){
+            // console.log(parseFloat(heartL[i].style.left),parseFloat(heartL[i].getAttribute('dataX')));
+            heartL[i].style.left =  parseFloat(heartL[i].style.left) + parseFloat(heartL[i].getAttribute('dataX'))+ 'px';
+            heartL[i].style.top =  parseFloat(heartL[i].style.top)+ parseFloat(heartL[i].getAttribute('dataY')) + 'px';
+            if(parseFloat(heartL[i].style.left)<0 || parseFloat(heartL[i].style.left)>cW){
+                heartL[i].setAttribute('dataX',- parseFloat(heartL[i].getAttribute('dataX')));
+            }
+            if(parseFloat(heartL[i].style.top)<0 || parseFloat(heartL[i].style.top)>cH){
+                heartL[i].setAttribute('dataY',- parseFloat(heartL[i].getAttribute('dataY')));
+            }
+
+        }
+
+    },100/6);
+
+
+
+
+
+</script>
+</body>
+</html>
